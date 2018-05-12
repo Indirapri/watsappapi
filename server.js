@@ -7,17 +7,20 @@ var multer = require("multer");
 var multer_dest = multer({dest: "./tmp"}).single('zipFile');
 
 app.post("/",multer_dest,function(req,res){
-    console.log(req.file);      
-    fs.createReadStream(req.file.path).pipe(unzip.Extract({path: './unziped'}));
-    result = {
-        file:req.file,
-        message:"File has been extracted"
-    };
-    fs.unlink(req.file.path, function (e) {
-        if (e) throw e;
-        console.log('successfully deleted '+req.file.path);
-    });
-    res.end(JSON.stringify(result));
+    var objects =req.file;
+    var convertedObjects = JSON.stringify(objects);
+console.log(convertedObjects);  
+    // console.log(req.file);      
+    // fs.createReadStream(req.file.path).pipe(unzip.Extract({path: './unziped'}));
+    // result = {
+    //     file:req.file,
+    //     message:"File has been extracted"
+    // };
+    // fs.unlink(req.file.path, function (e) {
+    //     if (e) throw e;
+    //     console.log('successfully deleted '+req.file.path);
+    // });
+    // res.end(JSON.stringify(result));
 });
 
 var server = app.listen(8080,function(){
