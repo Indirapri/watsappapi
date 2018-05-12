@@ -20,7 +20,7 @@ app.post("/",multer_dest,function(req,res){
     res.end(JSON.stringify(result));
 });
 
-var server = app.listen(3000,function(){
+var server = app.listen(8080,function(){
     var host = server.address().address;
     var port = server.address().port;
 
